@@ -18,6 +18,8 @@ def on_frame_configure(canvas_param):
 root = tk.Tk()
 canvas = tk.Canvas(root, borderwidth=0, background="#ffffff")
 frame = tk.Frame(canvas, background="#ffffff")
+frame.grid_columnconfigure(0, weight=1)
+frame.grid_columnconfigure(1, weight=1)
 vsb = tk.Scrollbar(root, orient="vertical", command=canvas.yview)
 canvas.configure(yscrollcommand=vsb.set)
 
