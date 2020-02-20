@@ -2,7 +2,19 @@ import tkinter as tk
 import tkinter.ttk
 
 root_tk = tk.Tk()
-tree = tk.ttk.Treeview(root_tk)
+root_tk.columnconfigure(0, weight=1)
+root_tk.rowconfigure(0, weight=1)
+main_frame = tk.Frame(root_tk, bg="#FF0000", )
+main_frame.grid(sticky=(tk.N, tk.S, tk.E, tk.W))
+main_frame.grid_rowconfigure(0, weight=1)
+main_frame.grid_columnconfigure(0, weight=1)
+
+tree = tk.ttk.Treeview(main_frame)
+
+# Configure scrolling
+treescroll = tk.ttk.Scrollbar(main_frame)
+treescroll.configure(command=tree.yview)
+tree.configure(yscrollcommand=treescroll.set)
 
 # Define columns
 tree["columns"] = ("one", "two", "three")
@@ -27,6 +39,7 @@ tree.insert(folder1, "end", iid=None, text="photo2.png", values=("23-Jun-17 11:2
 tree.insert(folder1, "end", iid=None, text="photo3.png", values=("23-Jun-17 11:30", "PNG file", "3.1 KB"))
 
 # Pack
-tree.pack(side=tk.TOP, fill=tk.X)
+tree.grid(row=0, column=0, sticky=(tk.N, tk.S, tk.E, tk.W))
+treescroll.grid(row=0, column=1, sticky=(tk.N, tk.S, tk.E))
 
 root_tk.mainloop()
