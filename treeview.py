@@ -4,15 +4,17 @@ import tkinter.ttk
 root_tk = tk.Tk()
 root_tk.columnconfigure(0, weight=1)
 root_tk.rowconfigure(0, weight=1)
-main_frame = tk.Frame(root_tk, bg="#FF0000", )
-main_frame.grid(sticky=(tk.N, tk.S, tk.E, tk.W))
-main_frame.grid_rowconfigure(0, weight=1)
-main_frame.grid_columnconfigure(0, weight=1)
 
-tree = tk.ttk.Treeview(main_frame)
+# ALTERNATE VERSION: With a separate frame instead of just using root_tk
+# main_frame = tk.Frame(root_tk, bg="#FF0000", )
+# main_frame.grid(sticky=(tk.N, tk.S, tk.E, tk.W))
+# main_frame.grid_rowconfigure(0, weight=1)
+# main_frame.grid_columnconfigure(0, weight=1)
+
+tree = tk.ttk.Treeview(root_tk)
 
 # Configure scrolling
-treescroll = tk.ttk.Scrollbar(main_frame)
+treescroll = tk.ttk.Scrollbar(root_tk)
 treescroll.configure(command=tree.yview)
 tree.configure(yscrollcommand=treescroll.set)
 
